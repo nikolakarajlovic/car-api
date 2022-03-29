@@ -22,11 +22,11 @@ class CarFactory extends Factory
         return [
             'brand' => $this->faker->name(),
             'model' => $this->faker->name(),
-            'year' => $this->faker->year($min='1900', $max = 'now'),
-            'max_speed' => $this->faker->numberBetween($min = 50, $max = 300),
+            'year' => $this->faker->year($min=1900, $max = 'now'),
+            'max_speed' => $this->faker->numberBetween($min = 20, $max = 300),
             'is_automatic' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'engine' => $this->faker->randomElement(['petroleum', 'diesel', 'electric','hybrid']),
-            'number_of_doors' =>$this->faker->numberBetween($min = 2, $max = 7)
+            'number_of_doors' =>$this->faker->numberBetween($min = 2, $max = 5)
         ];
     }
 }
