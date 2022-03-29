@@ -26,7 +26,7 @@ class UpdateCarRequest extends FormRequest
         return [
             'brand' => 'required|string|min:2|max:255',
             'model' => 'required|string|min:2|max:255',
-            'year' => 'required|integer|min:1900|max:2022',
+            'year' => 'required|integer|',
             'max_speed' => 'integer|min:20|max:300',
             'is_automatic' => 'required|boolean',
             'engine' => 'required|string|max:255',

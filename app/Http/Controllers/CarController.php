@@ -10,9 +10,13 @@ use App\Models\Car;
 class CarController extends Controller
 
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::all();
+        // $cars = Car::all();
+        $query = Car::query();
+        $cars = $query->paginate(
+            $request->query('per_page', 5)); // page size
+
         return response()->json($cars);
     }
 
