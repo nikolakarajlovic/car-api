@@ -16,6 +16,10 @@ class CarSeeder extends Seeder
      */
     public function run()
     {
+        DB::listen(function($q) {
+            info($q->sql);
+            info($q->bindings);
+        });
         Car::factory(10)->create();
     }
 }

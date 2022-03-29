@@ -19,10 +19,11 @@ class CarFactory extends Factory
      */
     public function definition()
     {
+        info($this->faker->year());
         return [
             'brand' => $this->faker->name(),
             'model' => $this->faker->name(),
-            'year' => $this->faker->year($min=1900, $max = 'now'),
+            'year' => $this->faker->year(),
             'max_speed' => $this->faker->numberBetween($min = 20, $max = 300),
             'is_automatic' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'engine' => $this->faker->randomElement(['petroleum', 'diesel', 'electric','hybrid']),
