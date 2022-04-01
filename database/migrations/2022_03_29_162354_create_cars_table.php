@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('model');
             $table->year('year');
             $table->integer('max_speed');
-            $table->boolean('is_automatic');
+            $table->boolean('is_automatic')->default(false);
             $table->string('engine');
-            $table->integer('number_of_doors');
+            $table->integer('number_of_door');
 
             $table->timestamps();
         });

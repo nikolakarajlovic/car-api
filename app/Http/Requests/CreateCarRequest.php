@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Car;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateCarRequest extends FormRequest
@@ -24,14 +25,13 @@ class CreateCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'brand' => 'required|string|min:2|max:255',
-            'model' => 'required|string|min:2|max:255',
-            'year' => 'required|integer',
-            'max_speed' => 'integer|min:20|max:300',
+            'brand' => 'required|string|min:2',
+            'model' => 'required|string|min:2',
+            'year' => 'required|integer|between:1990,2022',
+            'max_speed' => 'integer|between:20,300',
             'is_automatic' => 'required|boolean',
-            'engine' => 'required|string|max:255',
-            'number_of_doors' => 'required|integer|min:2|max:5',
-
+            'engine' => 'required|string|in:' . implode(',', Car::ENGINES),
+            'number_of_door' => 'required|integer|between:2,5',
         ];
     }
 }

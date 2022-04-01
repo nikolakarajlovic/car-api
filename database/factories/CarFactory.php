@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Car;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 class CarFactory extends Factory
 {
     protected $model = Car::class;
+    private const BRANDS = [
+        'mercedes',
+        'tesla',
+        'porsche',
+        'yugo',
+    ];
+
     /**
      * Define the model's default state.
      *
@@ -19,18 +26,15 @@ class CarFactory extends Factory
      */
     public function definition()
     {
-        info($this->faker->year());
+
         return [
-            'brand' => $this->faker->name(),
-            'model' => $this->faker->name(),
-            'year' => $this->faker->year(),
-            'max_speed' => $this->faker->numberBetween($min = 20, $max = 300),
-            'is_automatic' => $this->faker->boolean($chanceOfGettingTrue = 50),
-            'engine' => $this->faker->randomElement(['petroleum', 'diesel', 'electric','hybrid']),
-            'number_of_doors' =>$this->faker->numberBetween($min = 2, $max = 5)
+            'brand' => $this->faker->randomElement(self::BRANDS),
+            'model' => Str::random(5),
+            'year' => $this->faker->numberBetween(1990, 2022),
+            'max_speed' => $this->faker->numberBetween(150, 200),
+            'is_automatic' => $this->faker->boolean(30),
+            'engine' => $this->faker->randomElement(Car::ENGINES),
+            'number_of_door' => $this->faker->numberBetween(2, 5),
         ];
     }
 }
-
-
-    

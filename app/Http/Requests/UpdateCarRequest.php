@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Car;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCarRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateCarRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,13 +25,13 @@ class UpdateCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'brand' => 'required|string|min:2|max:255',
-            'model' => 'required|string|min:2|max:255',
-            'year' => 'required|integer|',
-            'max_speed' => 'integer|min:20|max:300',
-            'is_automatic' => 'required|boolean',
-            'engine' => 'required|string|max:255',
-            'number_of_doors' => 'required|integer|min:2|max:5',
+            'brand' => 'string|min:2',
+            'model' => 'string|min:2',
+            'year' => 'integer|between:1990,2022',
+            'max_speed' => 'integer|between:20,300',
+            'is_automatic' => 'boolean',
+            'engine' => 'string|in:' . implode(',', Car::ENGINES),
+            'number_of_door' => 'integer|between:2,5',
         ];
     }
 }
